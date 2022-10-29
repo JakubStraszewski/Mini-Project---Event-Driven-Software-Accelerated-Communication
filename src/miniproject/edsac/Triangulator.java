@@ -1,9 +1,5 @@
 package miniproject.edsac;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FileReader;
-
 /**
  * The Triangulator class is responsible for rendering triangles for geometry. It is a software analogy to the GPU components responsible for
  * rasterization.
@@ -25,27 +21,25 @@ public class Triangulator {
     }
 
     /**
-     * Sends an event from the Triangulator to the event database. The event-handling functions follow the
+     * Sends an event from the Triangulator to the event database. The event-handling functions and classes follow the
      * WAB protocol. Unfortunately, the protocol is long and very dense. However, it is possible to contain it within a function to facilitate event handling.
-     * @param event Event message to send, contained within a character array.
-     * @param msgLen Quantity of characters in the event message.
+     * @param event Event message to send.
      * @return The status indicating whether the operation succeeded or failed. The status corresponds to one of the constants declared in the TriangulatorStatus class.
      * @author Jakub Straszewski, T00225338 (top-level framework); Sun Microsystems/Oracle Corporation (<a href="https://docs.oracle.com/javase/7/docs/api/java/io/package-summary.html">File and IO operations</a>)
      */
-    public static TriangulatorStatus SendEvent(char[] event, int msgLen)
+    public static TriangulatorStatus SendEvent(EdsacEvent event)
     {
         return new TriangulatorStatus(TriangulatorStatus.CODE_SUCCESS);
     }
     /**
-     * Receives an event from the event database. The event-handling functions follow the
+     * Receives an event from the event database. The event-handling functions and classes follow the
      * WAB protocol. Unfortunately, the protocol is long and very dense. However, it is possible to contain it within a function to facilitate event handling.
-     * @param buffer The character array to receive the message.
-     * @param msgLen Quantity of characters to receive.
-     * @return The status indicating whether the operation succeeded or failed. The status corresponds to one of the constants declared in the TriangulatorStatus class.
+     * @return An EdsacEvent object containing the predefined event.
      * @author Jakub Straszewski, T00225338 (top-level framework); Sun Microsystems/Oracle Corporation (<a href="https://docs.oracle.com/javase/7/docs/api/java/io/package-summary.html">File and IO operations</a>)
      */
-    public TriangulatorStatus RetrieveEvent(char[] buffer, int msgLen)
+    public static EdsacEventParameterized RetrieveEvent()
     {
-        return new TriangulatorStatus(TriangulatorStatus.CODE_SUCCESS);
+        String[] lastResortParam = new String[1];
+        return new EdsacEventParameterized(0, lastResortParam);
     }
 }
