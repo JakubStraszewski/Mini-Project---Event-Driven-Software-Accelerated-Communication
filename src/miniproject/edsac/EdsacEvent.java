@@ -2,9 +2,8 @@ package miniproject.edsac;
 
 /**
  * The EdsacEvent class represents the base for all EDSAC events. All events must possess an event ID by which the events are recognized by EDSAC components.
- * @deprecated Do not use this class directly, it is no longer used. Where possible the parameterized version should be used.
- **/
-@Deprecated
+**/
+
 public class EdsacEvent {
     /**
      * No event.
