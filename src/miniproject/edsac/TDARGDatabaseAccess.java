@@ -8,7 +8,7 @@ import java.io.IOException;
  * Represents a handle (view) to the TDARG database. Used in event handling and for modifying rasterized pixels.
  * The event-handling functions and classes follow the WAB protocol. Unfortunately, the protocol is long and very dense. However, it is possible to contain it within a function to facilitate event handling.
  * @author Jakub Straszewski, T00225338 (top-level framework); Sun Microsystems/Oracle Corporation (<a href="https://docs.oracle.com/javase/7/docs/api/java/io/package-summary.html">File and IO operations</a>; <a href="https://docs.oracle.com/javase/7/docs/api/java/io/IOException.html">Exception Handling</a>)
- * <h2 style="background-color: #7f3f00">The toString() method is missing, due to being considered superfluous - printing database access handle data is not considered.</h2>
+ * @notice <p style="background-color: #7f3f00">The toString() method is missing, due to being considered superfluous - printing database access handle data is not considered.</p>
  * @Warning! <strong style="background-color:red">Very Important: Change the value of the String constant "filePath" to match the location of the "src" folder of this project on your system. Otherwise the application will not be able to find the necessary files if run from IntelliJ.</strong>
  *
  */
@@ -21,11 +21,14 @@ public class TDARGDatabaseAccess {
     private int databaseRecord;
     private int recordIndex;
 
+
+
     /**
      * <strong style="background-color:red">Very Important: Change the value of this String constant to match the location of the "src" folder of this project on your system. Otherwise the application will not be able to find the necessary files if run from IntelliJ.</strong>
      */
-
     private final String filePath = "C:\\Users\\jakub\\IdeaProjects\\Mini-Project - Event Driven Software Accelerated Communication\\src";
+
+
 
     /**
      * Open the database for reading.

@@ -8,7 +8,7 @@ package miniproject.edsac;
  * triangle typically spends most time at triangulating it. Note that the distance of the triangle from the "camera" or viewpoint
  * decreases the size of the triangle regardless of its actual size). Succinctly stating, the general action of the triangulator
  * is to produce the triangle's pixels in memory, wait until it can access the pixel database and set the correct pixels to the
- * correct color values in the raster matrix, and to the correct depth in the <a href="https://learnopengl.com/Advanced-OpenGL/Depth-testing">depth matrix (this link refers to the OpenGL implementation of depth buffers, but the logic is the same in all cases)</a>.
+ * correct color values in the raster matrix, and to the correct depth in the <a href="https://learnopengl.com/Advanced-OpenGL/Depth-testing">depth matrix (this link refers to the OpenGL implementation of depth buffers, but the logic is essentially the same in all cases)</a>.
  * <strong>This triangulator version is a template - involved only in development. T1, T2, T3, etc. will be the actually used classes.</strong>
  * Event-processing functions follow the Wait-and-Block (WAB) protocol which allows synchronization between components. Synchronization is essential for
  * accurate results.
@@ -72,11 +72,12 @@ public class Triangulator {
             }
         }
     }
-
     /**
      * Sends an event from the Triangulator to the event database. The event-handling functions and classes follow the
      * WAB protocol. Unfortunately, the protocol is long and very dense. However, it is possible to contain it within a function to facilitate event handling.
      * @param event Event message to send.
+     * @param clearing Specifies whether the function sends the event to the triangulator input. Used primarily for clearing
+     * events which should no longer be executing (preventing a potentially infinite loop).
      * @return The status indicating whether the operation succeeded or failed. The status corresponds to one of the constants declared in the TriangulatorStatus class.
      * @author Jakub Straszewski, T00225338 (top-level framework); Sun Microsystems/Oracle Corporation (<a href="https://docs.oracle.com/javase/7/docs/api/java/io/package-summary.html">File and IO operations</a>)
      */

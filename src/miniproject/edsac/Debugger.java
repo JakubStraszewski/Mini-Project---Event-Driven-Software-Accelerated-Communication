@@ -29,7 +29,9 @@ public class Debugger {
     }
 
     /** Debug the triangulator (template only) class.
-     * @link References: <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html">Runtime class</a>
+     * The path for the application <strong>must</strong> be changed from C:\Users\jakub\IdeaProjects\Mini-Project - Event Driven Software Accelerated Communication\src\ to whatever path the project is located at
+     * on your system.
+     * @link References: <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html">Runtime class</a>; <a href="https://docs.oracle.com/javase/7/docs/technotes/tools/windows/java.html">java.exe and commands</a>
      */
     public static void DebugTriangulator() {
         TDARGDatabaseAccess IOHandleOutput = new TDARGDatabaseAccess(TDARGDatabaseAccess.RECORD_TRIANGULATOR_IN, 0, TDARGDatabaseAccess.OPEN_MODE_WRITE), IOHandleInput = new TDARGDatabaseAccess(TDARGDatabaseAccess.RECORD_TRIANGULATOR_OUT, 0, TDARGDatabaseAccess.OPEN_MODE_READ);
@@ -103,7 +105,7 @@ public class Debugger {
                 {
                     System.out.println(e.toString());
                 }
-                // Inescapable WAB protocol again, as disliked as JTextArea ;-)
+                // Inescapable WAB protocol again, as disliked as JTextArea :-)
                 while (currentStatus != 1)
                 {
                     try {
