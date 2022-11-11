@@ -75,7 +75,7 @@ public class TDARGDatabaseAccess {
     /**
      * Constructs a new handle (view) to the TDARG database.
      * @param databaseRecord The type of record to obtain access to.
-     * @param recordIndex The index of the record, in case multiple records of the same type exist. Used with triangulator data. Can be null for other record types.
+     * @param recordIndex The index of the record, in case multiple records of the same type exist. Used with triangulator data.
      * @param openMode Specifies whether the record is to be written to or read from.
      */
 
@@ -172,7 +172,7 @@ public class TDARGDatabaseAccess {
      * <strong>Important notice: This method behaves similarly to the stream extraction operator in C++ when used with std::fstream.
      * See information pertaining to <a href = "https://en.cppreference.com/w/cpp/io/basic_istream/operator_gtgt">the stream extraction operator</a> as used with <a href="https://en.cppreference.com/w/cpp/io/basic_fstream">std::basic_fstream</a>.</strong>
      * @return A string containing a single parameter.
-     * @throws IOException
+     * @throws IOException Thrown if for some reason the read fails.
      */
 
     private String readParameter() throws IOException {
@@ -209,6 +209,10 @@ public class TDARGDatabaseAccess {
         int ID = 0;
         ID = retrievingHandle.read();
         // Input validation - The event identifier must be an integer with a value below 10
+        if (ID == -1)
+        {
+            throw new IOException("End-of-Stream Encountered: Please wait until the event source completes writing the event to the destination.");
+        }
         if (ID < '0' || ID > '9')
             throw new IOException("Database error: An invalid identifier (char of value " + ID + ") was read from a record.");
         else
@@ -271,7 +275,26 @@ public class TDARGDatabaseAccess {
         return new EdsacEventParameterized(ID, parameters);
     }
     /**
+     * Reads a single character from the handle. This method can only be called on handles which have been created with read mode specified.
+     * @return A character read from the database.
+     * @throws IOException Thrown if the handle was closed or opened for writing instead of reading, or if any other exception occurs internally within the method.
+     */
+
+    public char readCharacter() throws IOException
+    {
+        boolean succeeded = open();
+        if (!succeeded)
+            throw new IOException("Internal error in TDARGDatabaseAccess: write: An attempt was made to perform an IO operation on a closed handle.");
+        if (openMode != OPEN_MODE_READ)
+            throw new IOException("An attempt was made to read from a handle opened for writing.");
+
+        return (char)retrievingHandle.read();
+    }
+
+
+    /**
      * Writes an event to the handle. This method can only be called on handles which have been created with write mode specified.
+     * @param event The event to write.
      * @return True if the method succeeded, or false otherwise.
      * @throws IOException Thrown if the handle was closed or opened for reading instead of writing, or if any other exception occurs internally within the method.
      */
@@ -298,6 +321,47 @@ public class TDARGDatabaseAccess {
             sendingHandle.write(parameters[i] + " ");
         }
         close();
+        return true;
+    }
+    /**
+     * Writes a single character to the handle. This method can only be called on handles which have been created with write mode specified.
+     * @param character The character to write.
+     * @return True if the method succeeded, or false otherwise.
+     * @throws IOException Thrown if the handle was closed or opened for reading instead of writing, or if any other exception occurs internally within the method.
+     */
+    public boolean writeCharacter(char character) throws IOException {
+        boolean succeeded = open();
+        if (!succeeded)
+            throw new IOException("Internal error in TDARGDatabaseAccess: write: An attempt was made to perform an IO operation on a closed handle.");
+
+        if (openMode != OPEN_MODE_WRITE)
+            throw new IOException("An attempt was made to write to a handle opened for reading.");
+
+        sendingHandle.write(character);
+
+        close();
+
+        return true;
+    }
+
+    /**
+     * Writes an array of characters to the handle. This method can only be called on handles which have been created with write mode specified.
+     * @param characterArray The character array to write.
+     * @return True if the method succeeded, or false otherwise.
+     * @throws IOException Thrown if the handle was closed or opened for reading instead of writing, or if any other exception occurs internally within the method.
+     */
+    public boolean writeCharacterArray(char[] characterArray) throws IOException {
+        boolean succeeded = open();
+        if (!succeeded)
+            throw new IOException("Internal error in TDARGDatabaseAccess: write: An attempt was made to perform an IO operation on a closed handle.");
+
+        if (openMode != OPEN_MODE_WRITE)
+            throw new IOException("An attempt was made to write to a handle opened for reading.");
+
+        sendingHandle.write(characterArray);
+
+        close();
+
         return true;
     }
 
