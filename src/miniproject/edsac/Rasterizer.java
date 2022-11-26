@@ -1,4 +1,5 @@
 package miniproject.edsac;
+import java.lang.Thread;
 
 /**
  * Helper class for triangulation and rasterizing operations. Contains arrays containing the pixel coordinate vectors,
@@ -9,7 +10,6 @@ package miniproject.edsac;
  */
 
 public class Rasterizer {
-
     /**
      * Stores the raster matrix. Each char represents a color value (0-255).
      */

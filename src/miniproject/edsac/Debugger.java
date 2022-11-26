@@ -42,7 +42,7 @@ public class Debugger {
             return;
         }
         try {
-            Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start", "java", "-cp", "\"C:\\Users\\jakub\\IdeaProjects\\Mini-Project - Event Driven Software Accelerated Communication\\src\"", "\"C:\\Users\\jakub\\IdeaProjects\\Mini-Project - Event Driven Software Accelerated Communication\\src\\miniproject\\edsac\\Triangulator.java\""});
+            Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start", "java", "-cp", "\"C:\\Users\\jakub\\IdeaProjects\\Mini-Project - Event Driven Software Accelerated Communication\\src\"", "miniproject/edsac/Triangulator"});
         } catch (Exception e)
         {
             System.out.println("Unable to launch application:\n" + e.toString() + "\nIf using a different configuration for running the files than the one specified in IntelliJ, please modify the path(s) in the command so they indicate the necessary application(s).\nOtherwise please check if all files and directories reside in their original locations, as distributed.");
@@ -152,7 +152,7 @@ public class Debugger {
             return;
         }
         try {
-            Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start", "java", "-cp", "\"C:\\Users\\jakub\\IdeaProjects\\Mini-Project - Event Driven Software Accelerated Communication\\src\"", "\"C:\\Users\\jakub\\IdeaProjects\\Mini-Project - Event Driven Software Accelerated Communication\\src\\miniproject\\edsac\\Driver.java\""});
+            Runtime.getRuntime().exec(new String[]{"cmd", "/c", "start", "java", "-cp", "\"C:\\Users\\jakub\\IdeaProjects\\Mini-Project - Event Driven Software Accelerated Communication\\src\"", "miniproject/edsac/Driver"});
         } catch (Exception e)
         {
             System.out.println("Unable to launch application:\n" + e.toString() + "\nIf using a different configuration for running the files than the one specified in IntelliJ, please modify the path(s) in the command so they indicate the necessary application(s).\nOtherwise please check if all files and directories reside in their original locations, as distributed.");
